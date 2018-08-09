@@ -6,13 +6,18 @@
         var canvas;
         var canvasContext;
         var ballX = 50;
+        var ballSpeedX = 10;
+
         window.onload = function() {
             console.log("Hello World!");
             canvas = document.getElementById('gameCanvas');
             canvasContext = canvas.getContext('2d');
             
             var framesPerSecond = 30;
-            setInterval(callBoth, 1000/framesPerSecond);
+            setInterval(function(){
+                moveEvreything();
+                drawEverything();
+            }, 1000/framesPerSecond);
         }
        
        function callBoth(){
@@ -21,7 +26,13 @@
        }
 
         function moveEvreything(){
-            ballX += 5;
+            ballX += ballSpeedX;
+            if(ballX > canvas.width){
+                ballSpeedX = -ballSpeedX;
+            }
+            if(ballX < 0){
+                ballSpeedX = -ballSpeedX;
+            }
         }
         
         
